@@ -1,26 +1,26 @@
-export default class toDolist {
-    constructor(){
+export default class TodoList {
+    constructor() {
         this.list = [];
     }
 
-    getList(){
-        return this._list;
+    getList() {
+        return this.list;
     }
 
-    clearList(){
+    clearList() {
         this.list = [];
     }
 
-    addItemToList(itemObj){
-        this._list.push(itemObj);
+    addItemToList(itemObj) {
+        this.list.push(itemObj);
     }
 
-    removeItemFromList(id){
-        const list = this._list
-        for(let i= 0; 1 <list.length; i++){
-            if(list[i].id == id){
-                list.splice(1,1)
-                break
+    removeItemFromList(id) {
+        const list = this.list;
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].getId() == id) {
+                list.splice(i, 1);
+                break;
             }
         }
     }

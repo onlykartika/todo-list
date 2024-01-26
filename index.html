@@ -1,30 +1,31 @@
 <!DOCTYPE HTML>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-        <title>To Do List</title>
-        <link rel="stylesheet" href="dist/css/style.min.css"/>
-    </head>
-    <body>
-        <main>
-            <section class="newItemEntry">
-                <form id="itemENtryForm">
-                    <label for="newItem">Enter a new to do</label>
-                    <input id="newItem" type="text" size="40" autocomplete="off"
-                    placeholder="Add Item" tebindex="0">
-                    <button id="addItem" class="button" title="Add new item" aria-label="Add new item to list" tab="0">+</button>
-                </form>
-
-            </section>
-            <section class="listContainer">
-                <div class="listTitle">
-                    <h1>To Do List</h1>
-                    <bbutton id="clearItems" class="button" title="Clear the list" 
-                    aria-label="Remove all items from the list" tabindex="0">Clear</bbutton>
-                </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="dist/css/style.min.css"/> <!-- Make sure the path is correct -->
+    <script src="js/main.js"></script> <!-- Make sure the path is correct -->
+</head>
+<body>
+    <main>
+        <section class="newItemEntry">
+            <form id="itemEntryForm">
+                <label for="newItem">Enter a new to do</label>
+                <input id="newItem" type="text" size="40" autocomplete="off"
+                       placeholder="Add Item" tabindex="0">
+                <button id="addItem" class="button" title="Add new item" aria-label="Add new item to list" tabindex="0">+</button>
+            </form>
+        </section>
+        <section class="listContainer">
+            <div class="listTitle">
+                <h1>To Do List</h1>
+                <button id="clearItems" class="button" title="Clear the list"
+                        aria-label="Remove all items from the list" tabindex="0">Clear</button>
+            </div>
             <hr />
             <div id="listItems">
+                <!-- Hard-coded items for testing -->
                 <div class="item">
                     <input type="checkbox" id="1" tabindex="0">
                     <label for="1">eat</label>
@@ -35,7 +36,6 @@
                 </div>
             </div>
         </section>
-
-        </main>
-    </body>
+    </main>
+</body>
 </html>

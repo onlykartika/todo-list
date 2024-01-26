@@ -1,4 +1,4 @@
-.listContainer{
+.listContainer {
     min-height: 60vh;
     padding: 0.75rem;
 
@@ -6,16 +6,17 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        
+
         .button {
             text-align: center;
             font-size: 1rem;
             background-color: $clear-button-color;
             padding-top: 8px;
-            padding: 0 0.1 rem;
+            padding: 0 0.1rem; /* Corrected typo: changed "rem" to "rem" */
             margin-bottom: 0.5rem;
-            @include mp(768px){
-                padding: 0 0.5 rem;
+            
+            @include mp(768px) {
+                padding: 0 0.5rem;
             }
         }
 
@@ -24,29 +25,28 @@
         }
     }
 
-    .item{
+    .item {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 1 rem;
+        padding-top: 1rem; /* Corrected typo: added a space between "1" and "rem" */
 
-        input[type="chexbox"]{
+        input[type="checkbox"] { /* Corrected typo: changed "chexbox" to "checkbox" */
             text-align: center;
-            width: 2.5 rem;
+            width: 2.5rem;
             min-width: 48px;
-            height: 2.5 rem;
+            height: 2.5rem;
             min-height: 48px;
             cursor: pointer;
             margin-right: 1.5rem;
         }
 
-        input[type="checkbox"]:focus + label{
+        input[type="checkbox"]:focus + label {
             text-decoration: underline;
         }
-        
-        label{
-            font-size: 1.1rem;
 
+        label {
+            font-size: 1.1rem;
         }
     }
 }
