@@ -1,22 +1,22 @@
 export default class TodoList {
     constructor() {
-        this.list = [];
+        this._list = [];
     }
 
     getList() {
-        return this.list;
+        return this._list;
     }
 
     clearList() {
-        this.list = [];
+        this._list = [];
     }
 
     addItemToList(itemObj) {
-        this.list.push(itemObj);
+        this._list.push(itemObj);
     }
 
     removeItemFromList(id) {
-        const list = this.list;
+        const list = this._list;
         for (let i = 0; i < list.length; i++) {
             if (list[i].getId() == id) {
                 list.splice(i, 1);

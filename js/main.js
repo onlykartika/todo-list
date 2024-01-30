@@ -1,8 +1,7 @@
-// main application code
-import TodoList from "./todolist";
-import TodoItem from "./todoitem";
+import TodoList from  "./todolist.js"
+import TodoItem from "./todoitem.js"
 
-const toDoList = new TodoList();
+const DoList = new TodoList()
 
 document.addEventListener("readystatechange", (event) => {
     if (event.target.readyState === "complete") {
@@ -16,8 +15,34 @@ const initApp = () => {
         event.preventDefault();
         processSubmission();
     });
-    refreshThePage();
 };
+
+const clearItems = document.getElementById("clearItems")
+clearItems.addEventListener("click", (event) => {
+    const list = DoList.getList()
+    if(list.length) {
+        const confirmed = confirm("Are you sure?")
+
+        if(confirmed){
+            DoList.clearList()
+            updatePersistenData(DoList.getList())
+            refreshThePage()
+        }
+    }
+
+    loadListObject()
+    refreshThePage()
+})
+
+const loadListObject = () => {
+    const storedList = localStorage.getItem("myToDoList")
+    if (typeof storedList !== "string") return
+    const parsedList = JSON.parse(storedList)
+    parsedList.forEach(itemObj => {
+        const newToDoItem = createNewItem(itemObj._id, itemObj._item)
+        DoList.addItemToList(newToDoItem)
+    })
+}
 
 const refreshThePage = () => {
     clearListDisplay();
@@ -40,7 +65,7 @@ const deleteContents = (parentElement) => {
 };
 
 const renderList = () => {
-    const list = toDoList.getList();
+    const list = DoList.getList();
     list.forEach((item) => {
         buildListItem(item);
     });
@@ -69,12 +94,17 @@ const buildListItem = (item) => {
 
 const addClickListenerToCheckbox = (checkbox) => {
     checkbox.addEventListener("click", (event) => {
-        toDoList.removeItemFromList(checkbox.id);
+        DoList.removeItemFromList(checkbox.id);
+        updatePersistenData(DoList.getList())
         setTimeout(() => {
             refreshThePage();
         }, 1000);
     });
 };
+
+const updatePersistenData = (listArray) => {
+    localStorage.setItem("myTodoList", JSON.stringify(listArray))
+}
 
 const clearItemEntryField = () => {
     document.getElementById("newItem").value = "";
@@ -89,8 +119,8 @@ const processSubmission = () => {
     if (!newEntryText.length) return;
     const nextItemId = calcNextItemId();
     const toDoItem = createNewItem(nextItemId, newEntryText);
-    toDoList.addItemToList(toDoItem);
-
+    DoList.addItemToList(toDoItem);
+    updatePersistenData(DoList.getList())
     refreshThePage();
 };
 
@@ -100,7 +130,7 @@ const getUserEntry = () => {
 
 const calcNextItemId = () => {
     let nextItemId = 1;
-    const list = toDoList.getList();
+    const list = DoList.getList();
     if (list.length > 0) {
         nextItemId = list[list.length - 1].getId() + 1;
     }
@@ -113,3 +143,4 @@ const createNewItem = (itemId, itemText) => {
     toDo.setItem(itemText);
     return toDo;
 };
+
